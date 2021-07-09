@@ -1,0 +1,52 @@
+{
+  name: `Helicorder`,
+  description: `Helicorder Image Relay`,
+  uuid: `3C8A5FA8-2228-4141-A097-EF049F48C6C4`,
+  image: `gitlab.home:5005/kn6plv/helicorder`,
+  tags: [
+    `Sensors`,
+    `AREDN`
+  ],
+  actions: [
+    {
+      type: `Header`,
+      title: `External Network`
+    },
+    {
+      type: `SelectNetwork`,
+      name: `primary`,
+      description: `Select which network the application will use.`
+    },
+    {
+      type: `EditEnvironmentAsCheckbox`,
+      name: `NAT`,
+      description: `Make search available on the network`,
+      initValue: false
+    }
+  ],
+  properties: [
+    {
+      type: `Port`,
+      name: `7710/tcp`,
+      port: 7710,
+      protocol: `TCP`,
+      nat: `{{NAT}}`,
+      web: {
+        type: `newtab`,
+        path: ``
+      },
+      mdns: {
+        type: `_http._tcp`
+      }
+    },
+    {
+      type: `Network`,
+      name: `primary`,
+      value: `home`
+    }
+  ],
+  monitor: {
+    cmd: ``,
+    init: ``
+  }
+}
